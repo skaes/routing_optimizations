@@ -25,7 +25,7 @@ collection algorithm, but I haven't had a chance to try it so far).
 
 This plugin improves the situation by generating code only for named
 routes helpers which are actually used by the application and making
-the genrated code more compact.
+the generated code more compact.
 
 == Requirements
 
