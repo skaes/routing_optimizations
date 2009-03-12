@@ -4,11 +4,11 @@
 
 The Rails routing module is mainly responsible for
 
-  * parsing urls to turn them into (controller, action, parameter hash) tuples
-  * generating urls from (controller, action, parameter hash) tuples
-  * generating helper methods for
-    - generating hashes for named routes (given additional parameters)
-    - generating urls for named routes (given additional parameters)
+* parsing urls to turn them into (controller, action, parameter hash) tuples
+* generating urls from (controller, action, parameter hash) tuples
+* generating helper methods for
+  - generating hashes for named routes (given additional parameters)
+  - generating urls for named routes (given additional parameters)
 
 Ever since Rails started to support routing specifications written in
 Ruby, both functionality and implementation become more complex with
