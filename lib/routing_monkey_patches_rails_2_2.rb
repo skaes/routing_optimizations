@@ -11,7 +11,6 @@
 # modified:   actionpack/lib/action_controller/routing/route_set.rb
 # modified:   actionpack/lib/action_controller/test_process.rb
 # modified:   activerecord/lib/active_record/attribute_methods.rb
-
 raise "actionpack not loaded yet, giving up" unless defined?(ActionController::Routing::RouteSet::NamedRouteCollection)
 
 module ::ActionController
@@ -229,13 +228,16 @@ module ::ActionController
     end
   end
 
-  # testing needs some brains
-  module TestProcess
-    def method_missing(selector, *args)
-      if ActionController::Routing::Routes.named_routes.helper_method?(selector)
-        @controller.send(selector, *args)
-      else
-        super
+  if RAILS_ENV == "test"
+    require 'action_controller/test_process'
+    # testing needs some brains
+    module TestProcess
+      def method_missing(selector, *args)
+        if ActionController::Routing::Routes.named_routes.helper_method?(selector)
+          @controller.send(selector, *args)
+        else
+          super
+        end
       end
     end
   end

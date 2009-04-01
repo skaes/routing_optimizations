@@ -181,11 +181,14 @@ module ::ActionController
     end
   end
 
-  # testing needs some brains
-  module TestProcess
-    def method_missing(selector, *args)
-      return @controller.send!(selector, *args) if ActionController::Routing::Routes.named_routes.helper_method?(selector)
-      return super
+  if RAILS_ENV == "test"
+    require 'action_controller/test_process'
+    # testing needs some brains
+    module TestProcess
+      def method_missing(selector, *args)
+        return @controller.send!(selector, *args) if ActionController::Routing::Routes.named_routes.helper_method?(selector)
+        return super
+      end
     end
   end
 end
